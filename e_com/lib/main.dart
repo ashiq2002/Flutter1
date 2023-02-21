@@ -1,4 +1,5 @@
 import 'package:e_com/screen/home_screen.dart';
+import 'package:e_com/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark
       ),
-      home: const HomeScreen(),
+      routes: {
+        '/': (context)=> const LoginScreen()
+      },
     );
   }
 }
