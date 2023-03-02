@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.light
       ),
-      initialRoute: RouteNames.loginScreen,
+      initialRoute: RouteNames.homeScreen,
       onGenerateRoute: MyRoutes.generateRoutes,
 
     );
