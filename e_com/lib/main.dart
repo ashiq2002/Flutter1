@@ -1,5 +1,5 @@
-import 'package:e_com/screen/home_screen.dart';
-import 'package:e_com/screen/login_screen.dart';
+import 'package:e_com/util/my_routes.dart';
+import 'package:e_com/util/route_names.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark
+        brightness: Brightness.light
       ),
-      routes: {
-        '/': (context)=> const LoginScreen()
-      },
+      initialRoute: RouteNames.loginScreen,
+      onGenerateRoute: MyRoutes.generateRoutes,
+
     );
   }
 }
