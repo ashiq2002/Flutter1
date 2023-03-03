@@ -41,13 +41,21 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: ProductData.products.length,
-          itemBuilder: (context, index) => (ProductData.products != null && ProductData.products.isNotEmpty)?
-          ProductItem(product: ProductData.products[index])
-          :const Center(
-            child: CircularProgressIndicator(),
-          ),
+        child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemCount: ProductData.products.length,
+            itemBuilder: (context, index){
+              var item = ProductData.products[index];
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                child: GridTile(
+                  child: Image.network('https://avatars.githubusercontent.com/u/62563665?s=400&u=370b5b712e39b6b60706ef95e4695b04e9f74be7&v=4'),
+                )
+              );
+            }
         ),
       ),
       drawer: const MyDrawer(),
