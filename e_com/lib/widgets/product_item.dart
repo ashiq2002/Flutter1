@@ -8,18 +8,20 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
-        onTap: (){},
-          // leading: Image.network(product.images, height: 45, width:45,),
-        title: Text(product.title, style: const TextStyle(fontWeight: FontWeight.w500),),
-        subtitle: Text(product.description),
-        trailing: Text(
-          "\$${product.price.toString()}",
-          textScaleFactor: 1.5,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.orange),
-        ),
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Container(
+        height: 100,
+        width: 100,
+        child: Column(
+          children: [
+            Text(product.title),
+            Image.network(product.images, height: 100, width: 100,),
+            Text(product.price.toString())
+          ],
+        )
       ),
     );
   }

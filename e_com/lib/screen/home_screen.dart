@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   loadData() async {
-    Future.delayed(const Duration(seconds: 5));
     final json = await rootBundle.loadString('assets/files/product_data.json');
     final data = jsonDecode(json);
     var products = data['products'];
@@ -46,15 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: ProductData.products.length,
             itemBuilder: (context, index){
               var item = ProductData.products[index];
-              return Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)
-                ),
-                child: GridTile(
-                  child: Image.network('https://avatars.githubusercontent.com/u/62563665?s=400&u=370b5b712e39b6b60706ef95e4695b04e9f74be7&v=4'),
-                )
-              );
+              return ProductItem(product: item);
             }
         ),
       ),
