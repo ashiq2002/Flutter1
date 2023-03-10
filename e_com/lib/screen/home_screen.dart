@@ -35,19 +35,78 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         title: const Text("E-Com"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemCount: ProductData.products.length,
-            itemBuilder: (context, index){
-              var item = ProductData.products[index];
-              return ProductItem(product: item);
-            }
-        ),
+      body: ListView.builder(
+        itemCount: ProductData.products.length,
+          itemBuilder: (context, index)=> Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              height: 115,
+              width: double.infinity,
+
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white,
+              ),
+
+              child: Row(
+                children: [
+                  Container(
+                    height: double.maxFinite,
+                    width: 100,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.grey.shade200
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(
+                          ProductData.products[index].images,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(ProductData.products[index].title, style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500
+                          ),),
+                          const SizedBox(height: 5,),
+                          Text(ProductData.products[index].description, style: const TextStyle(
+                            fontSize: 12,
+                            overflow: TextOverflow.ellipsis
+                          ),),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: ButtonBar(
+                              alignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('\$${ProductData.products[index].price}'),
+                                ElevatedButton(
+                                    onPressed: (){},
+                                    child: const Text('Buy')
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ),
+          )
       ),
       drawer: const MyDrawer(),
     );
